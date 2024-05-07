@@ -143,87 +143,6 @@
             </h3>
           </div>
           <div class="col-md-6">
-            <script language="javascript">
-              {
-                  if $userinfo.logged == 1
-              } {
-                  literal
-              }
-
-              function checkform() {
-                  if (document.mainform.message.value == '') {
-                      alert("Please type your message!");
-                      document.mainform.message.focus();
-                      return false;
-                  }
-                  return true;
-              } {
-                  /literal} {
-                  else
-              } {
-                  literal
-              }
-
-              function checkform() {
-                  if (document.mainform.name.value == '') {
-                      alert("Please type your full name!");
-                      document.mainform.name.focus();
-                      return false;
-                  }
-                  if (document.mainform.email.value == '') {
-                      alert("Please enter your e-mail address!");
-                      document.mainform.email.focus();
-                      return false;
-                  }
-                  if (document.mainform.message.value == '') {
-                      alert("Please type your message!");
-                      document.mainform.message.focus();
-                      return false;
-                  }
-                  return true;
-              } {
-                  /literal} { /
-                  if
-              }
-            </script>
-
-            <form method="post" name="mainform" onsubmit="return checkform()">
-              <input type="hidden" name="a" value="support" />
-              <input type="hidden" name="action" value="send" />
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  name="name"
-                  value=""
-                  class="form-control"
-                  placeholder="Your Name"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  name="email"
-                  value=""
-                  class="form-control"
-                  placeholder="Your Email"
-                />
-              </div>
-              <div class="form-group">
-                <textarea
-                  name="message"
-                  rows="8"
-                  class="form-control"
-                  placeholder="Your message"
-                ></textarea>
-              </div>
-
-              <div class="form-group text-right">
-                <button class="btn btn-warning">Send</button>
-              </div>
-            </form>
-          </div>
-          <div class="col-md-6">
             <h4>
               Main office:<br />
               8 GALLEYWAY, UK, LONDON
@@ -234,12 +153,12 @@
               messages send on our e-mail!
             </p>
             <a
-              href="mailto:support@<%= res.sitename %>.co"
+              href="mailto:wilsoncrypto.pro@hotmail.com"
               class="contact section-contact__contact"
               target="_blank"
             >
               <img src="/assets/img/icons/mail.png" alt="" />
-              <span style="color: #facd8a">support@<%= res.sitename %>.co</span>
+              <span style="color: #facd8a">wilsoncrypto.pro@hotmail.com</span>
             </a>
           </div>
         </div>

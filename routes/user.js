@@ -83,6 +83,7 @@ router.post("/withdraw", ensureAuthenticated, async (req, res) => {
                 amount: realamount,
                 userID: req.user.id,
                 status: false,
+                type: "withdraw",
                 username: req.user.username
             });
             await newHist.save();

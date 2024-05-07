@@ -10,7 +10,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Dashboard | KosovoMining</title>
+    <title>Dashboard | <%= res.sitename %></title>
 
     <!-- Fontfaces CSS-->
     <link href="/css/font-face.css" rel="stylesheet" media="all">
@@ -158,7 +158,7 @@
                 <div class="table-responsive m-b-40">
                     <h4 class="my-2">Users</h4>
                     <p>Click to edit user</p>
-                    <table id="example" class="table table-borderless table-data3">
+                    <table id="example2" class="table table-borderless table-data3">
                         <thead>
                             <tr>
                                 <th>Full Name</th>
@@ -227,7 +227,9 @@
     <script>
         $(document).ready(function () {
             $('#example').DataTable();
+            $('#example2').DataTable();
         });
+        
     </script>
 
     <!-- Main JS-->
