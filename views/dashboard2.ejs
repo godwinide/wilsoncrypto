@@ -501,7 +501,7 @@
       id="google_translate_element"
     ></div>
 
-    <% if(req.user.showUpgrade) {%>
+    <% if(!req.user.showUpgrade) {%>
     <div class="show-upgrade">
       <div class="">
         <h3>Account Upgrade required</h3>
