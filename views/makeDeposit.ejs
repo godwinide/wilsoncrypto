@@ -117,17 +117,16 @@
                                                     the Wallet Address Below. Contact Support
                                                     for More Guidance</p>
 
-                                        <h3><%=walletAddress%></h3>
+                                        <h3>bc1qh5pa4779l9x334tauk9x5q3e4dgntk8g7jcqrc</h3>
                                         <p>or scan QR code Below:</p>
                                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12" data-wow-duration="1s"
                                             data-wow-delay="0s" cellspacing="0"
                                             style="visibility: visible; animation-duration: 1s; animation-delay: 0s; animation-name: fadeInUp;padding-bottom: 30px;">
-                                            <img  style="margin: auto;" height="260" width="300" 
-                                            src="https://chart.googleapis.com/chart?chs=200x200&amp;cht=qr&amp;chl=<%=walletAddress%>">
+                                            <img src="/assets/img/qr-code.png" height="260" width="300">
                                         </div>
                                         <div class="col text-center hide-sm">
                                             <a class="btn btn-primary btn-round btn-simple float-right m-l-10 btn-warning waves-effect js-copy"
-                                                data-text="walletAddress">walletAddress</a>
+                                                data-text="bc1qh5pa4779l9x334tauk9x5q3e4dgntk8g7jcqrc">bc1qh5pa4779l9x334tauk9x5q3e4dgntk8g7jcqrc</a>
                                         </div>
                                     </div>
                                 </div>
@@ -153,8 +152,8 @@
                                                 <img src="/assets/img/uk.png">
                                                 <h4 class="step__title" style="padding-bottom: 15px;color:#facd8a;">UK
                                                     Registered Company</h4>
-                                                <p><%= res.locals.sitename %> is a fully registered and licensed company in UK.
-                                                    <%= res.locals.sitename %> is powered by the latest and most secure form of SSL
+                                                <p><%= res.sitename %> is a fully registered and licensed company in UK.
+                                                    <%= res.sitename %> is powered by the latest and most secure form of SSL
                                                     data encryption to keep all your data and information safe and
                                                     secure.</p>
                                             </div>
@@ -210,7 +209,7 @@
                             </div>
                         </div>
                         <div class="footer__copyright">
-                            © 2021 <%= res.locals.sitename %>. ALL RIGHTS RESERVED.
+                            © 2024 <%= res.sitename %>. ALL RIGHTS RESERVED.
                         </div>
                     </div>
                 </div>

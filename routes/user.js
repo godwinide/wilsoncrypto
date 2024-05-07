@@ -3,12 +3,11 @@ const { ensureAuthenticated } = require("../config/auth");
 const User = require("../model/User");
 const History = require("../model/History");
 const bcrypt = require("bcryptjs");
-const comma = require("../utils/comma");
-const Site = require("../model/Site");
+const comma = require("../utils/comma")
 
 router.get("/dashboard", ensureAuthenticated, (req, res) => {
     try {
-        return res.render("dashboard2", { res, pageTitle: "Dashbaord", req, comma, layout: false });
+        return res.render("dashboard2", { pageTitle: "Dashbaord", req, res, comma, layout: false });
     } catch (err) {
         return res.redirect("/");
     }
@@ -16,7 +15,7 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
 
 router.get("/dashboard2", (req, res) => {
     try {
-        return res.render("dashboard2", { res, pageTitle: "Dashbaord", req, comma });
+        return res.render("dashboard2", { pageTitle: "Dashbaord", req, res, comma, layout: "layout3" });
     } catch (err) {
         return res.redirect("/");
     }
@@ -24,18 +23,16 @@ router.get("/dashboard2", (req, res) => {
 
 router.get("/deposit", ensureAuthenticated, (req, res) => {
     try {
-        return res.render("deposit", { res, pageTitle: "Deposit Funds", req });
+        return res.render("deposit", { pageTitle: "Deposit Funds", req, res });
     } catch (err) {
         return res.redirect("/");
     }
 });
 
-router.post("/make-deposit", ensureAuthenticated, async (req, res) => {
+router.post("/make-deposit", ensureAuthenticated, (req, res) => {
     try {
         const { amount } = req.body;
-        const site = await Site.findOne();
-        const walletAddress = site?.wallet || "no wallet address set";
-        return res.render("makeDeposit", { res, pageTitle: "Deposit Funds", walletAddress, amount, req });
+        return res.render("makeDeposit", { pageTitle: "Deposit Funds", amount, req, res });
     } catch (err) {
         return res.redirect("/");
     }
@@ -44,7 +41,7 @@ router.post("/make-deposit", ensureAuthenticated, async (req, res) => {
 router.get("/deposits", ensureAuthenticated, async (req, res) => {
     try {
         const history = await History.find({ userID: req.user.id });
-        return res.render("deposits", { res, pageTitle: "Deposits", history, req });
+        return res.render("deposits", { pageTitle: "Deposits", history, req, res });
     } catch (err) {
         return res.redirect("/");
     }
@@ -52,7 +49,7 @@ router.get("/deposits", ensureAuthenticated, async (req, res) => {
 
 router.get("/withdraw", ensureAuthenticated, (req, res) => {
     try {
-        return res.render("withdraw", { res, pageTitle: "Withdraw Funds", req });
+        return res.render("withdraw", { pageTitle: "Withdraw Funds", req, res });
     } catch (err) {
         return res.redirect("/");
     }
@@ -74,19 +71,26 @@ router.post("/withdraw", ensureAuthenticated, async (req, res) => {
             return res.redirect("/withdraw");
         }
         if (req.user.balance < realamount || realamount < 0) {
-            req.flash("error_msg", "Insufficient balance.");
+            req.flash("error_msg", "Insufficient balance. try and deposit.");
             return res.redirect("/withdraw");
         }
         if (req.user.debt > 0) {
-            req.flash("error_msg", "Deposit $" + req.user.debt + " cost of transfer fee to process withdrawal");
+            req.flash("error_msg", "You can't withdraw because you still have to pay $" + req.user.debt + " cost of transfer fee");
             return res.redirect("/withdraw");
         }
         else {
-            // await User.updateOne({ _id: req.user.id }, {
-            //     pending_withdrawal: Number(req.user.pending_withdrawal || 0) + Number(realamount),
-            //     // balance: Number(req.user.balance) - Number(realamount)
-            // })
-            req.flash("error_msg", `Your current pending approval, contact support for assistance`);
+            const newHist = new History({
+                amount: realamount,
+                userID: req.user.id,
+                status: false,
+                username: req.user.username
+            });
+            await newHist.save();
+            await User.updateOne({ _id: req.user.id }, {
+                pending_withdrawal: Number(req.user.pending_withdrawal || 0) + Number(realamount),
+                balance: Number(req.user.balance) - Number(realamount)
+            })
+            req.flash("success_msg", `Your withdrawal request of ${comma(realamount)} has been received and is pending approval`);
             return res.redirect("/withdraw");
         }
     } catch (err) {
@@ -98,7 +102,7 @@ router.post("/withdraw", ensureAuthenticated, async (req, res) => {
 router.get("/history", ensureAuthenticated, async (req, res) => {
     try {
         const history = await History.find({ userID: req.user.id });
-        return res.render("history", { res, pageTitle: "Hisotry", history, req });
+        return res.render("history", { pageTitle: "Hisotry", history, req, res });
     } catch (err) {
         return res.redirect("/");
     }
@@ -106,7 +110,7 @@ router.get("/history", ensureAuthenticated, async (req, res) => {
 
 router.get("/settings", ensureAuthenticated, (req, res) => {
     try {
-        return res.render("settings", { res, pageTitle: "Account Settings", req });
+        return res.render("settings", { pageTitle: "Account Settings", req, res });
     } catch (err) {
         return res.redirect("/");
     }

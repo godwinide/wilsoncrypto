@@ -114,9 +114,8 @@
             <div class="header__content">
               <h1 class="header__h1">Providing the stable income 10% daily</h1>
               <p class="header__text">
-                <%= res.locals.sitename %> is an innovative company engaged
-                <br />in investments in gold and provide the stable income 10%
-                daily.
+                <%= res.sitename %> is an innovative company engaged <br />in
+                investments in gold and provide the stable income 10% daily.
               </p>
               <a href="/signup" class="btn btn-warning header__btn" data-pjax>
                 Register
@@ -176,7 +175,7 @@
               </div>
               <div class="statitem__label">Total Withdrawals</div>
               <div class="statitem__value gold">
-                $ <span class="count">523328599</span>
+                $ <span class="count">2328599</span>
               </div>
             </div>
           </div>
@@ -187,7 +186,7 @@
               </div>
               <div class="statitem__label">Investors</div>
               <div class="statitem__value gold">
-                <span class="count">43989</span>
+                <span class="count">1989</span>
               </div>
             </div>
           </div>
@@ -198,7 +197,7 @@
               </div>
               <div class="statitem__label">Total Investments</div>
               <div class="statitem__value gold">
-                $ <span class="count">719551902</span>
+                $ <span class="count">1551902</span>
               </div>
             </div>
           </div>
@@ -209,7 +208,7 @@
               </div>
               <div class="statitem__label">Total Accounts</div>
               <div class="statitem__value gold">
-                <span class="count">823448</span>
+                $<span class="count">576</span>
               </div>
             </div>
           </div>
@@ -225,7 +224,7 @@
               Counter: $(this).text(),
             },
             {
-              duration: 5000,
+              duration: 10000,
               easing: "swing",
               step: function (now) {
                 $(this).text(Math.ceil(now));
@@ -233,40 +232,32 @@
             }
           );
       });
-
-      setTimeout(() => {
-        document.querySelectorAll(".count").forEach((e) => {
-          e.innerText = Number(e.innerText).toLocaleString();
-        });
-      }, 6000);
     </script>
     <section class="section section-home textsite titlesite">
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-lg-7">
             <div class="section-home__title">
-              <h2 class="section__h2">
-                Why did we choose <%= res.locals.sitename %>
-              </h2>
+              <h2 class="section__h2">Why did we choose <%= res.sitename %></h2>
               <h3 class="section__h3"></h3>
             </div>
             <p class="section__text">
-              <%= res.locals.sitename %> is a legally registered Private Limited
+              <%= res.sitename %> is a legally registered Private Limited
               Company which was founded and transformed into an open joint-stock
               company in order to provide access for everyone to financial
-              products offered by <%= res.locals.sitename %>. The investment
-              management potential created by the professionals working with the
-              Company had been the underlying reason of the transformation.
-              Since <%= res.locals.sitename %> has demonstrated outstanding
-              performance and significantly expanded its assets in the previous
-              period, the decision was made to start offering its investment
-              products via specialized online services. The Company is not a
-              member, associate or subdivision of any other organization, so it
-              is free to make totally independent decisions. Our team of
-              full-time financial experts ensures effective and quick analysis
-              of the current financial situation. Our mission is to provide
-              every person the opportunity to gain maximal profit from investing
-              at minimal risk..
+              products offered by <%= res.sitename %>. The investment management
+              potential created by the professionals working with the Company
+              had been the underlying reason of the transformation. Since <%=
+              res.sitename %> has demonstrated outstanding performance and
+              significantly expanded its assets in the previous period, the
+              decision was made to start offering its investment products via
+              specialized online services. The Company is not a member,
+              associate or subdivision of any other organization, so it is free
+              to make totally independent decisions. Our team of full-time
+              financial experts ensures effective and quick analysis of the
+              current financial situation. Our mission is to provide every
+              person the opportunity to gain maximal profit from investing at
+              minimal risk..
             </p>
             <a
               href="indexe47ee47e.html?a=about"
@@ -584,6 +575,84 @@
         </section>
       </div>
     </section>
+    <section class="section textsite titlesite bagblack padsection">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 section__title">
+            <h2 class="section__h2">How it works</h2>
+            <h3 class="section__h3">
+              At every step, the <%= res.sitename %> provides you with an
+              affordable and easy-to-use way even for beginners.
+            </h3>
+          </div>
+          <div class="col-md-12">
+            <div class="howitwork section__howitwork">
+              <div class="howitwork__tabs">
+                <ul class="nav nav-tabs howitwork__nav">
+                  <li class="active">
+                    <a data-toggle="tab" href="#howitwork4">Step 1</a>
+                  </li>
+                  <li><a data-toggle="tab" href="#howitwork5">Step 2</a></li>
+                  <li><a data-toggle="tab" href="#howitwork6">Step 3</a></li>
+                </ul>
+              </div>
+              <div class="tab-content howitwork__tabcontent">
+                <div id="howitwork4" class="tab-pane fade in active">
+                  <div class="step howitwork__step">
+                    <div class="step__icon">
+                      <img src="/assets/img/sarah.png" alt="Sarah Petterson" />
+                    </div>
+                    <div class="step__body">
+                      <!-- <h4 class="step__title">
+									Create account
+								</h4> -->
+                      <div class="step__content">
+                        I want to thank <%= res.sitename %>, I just received my
+                        profit of $15, 000 from my investments. <br />My whole
+                        family is indeed happy. I'm hoping to invest big next
+                        week
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="howitwork5" class="tab-pane fade">
+                  <div class="step howitwork__step">
+                    <div class="step__icon">
+                      <img src="/assets/img/howard.png" alt="Kyle Howard" />
+                    </div>
+                    <div class="step__body">
+                      <!-- <h4 class="step__title">
+									Make deposit
+								</h4> -->
+                      <div class="step__content">
+                        Thank you so much. I just received my first $20k. Thank
+                        you <%= res.sitename %>.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="howitwork6" class="tab-pane fade">
+                  <div class="step howitwork__step">
+                    <div class="step__icon">
+                      <img src="/assets/img/keil.png" alt="Oliver Keil" />
+                    </div>
+                    <div class="step__body">
+                      <!-- <h4 class="step__title">
+									Withdraw profit
+								</h4> -->
+                      <div class="step__content">
+                        You Guys are amazing! Thank you for now i'm financially
+                        stable. <%= res.sitename %> is the best
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="section section-affilate textsite titlesite">
       <div class="container">
         <div class="row">
@@ -593,15 +662,14 @@
           </div>
           <div class="col-md-6">
             <p class="section__text">
-              At <%= res.locals.sitename %>, we believe that advertising about
-              our services by our satisfied clients is the best way to grow
-              business. Keeping this in mind, <%= res.locals.sitename %> founded
-              an amazing lucrative reward in terms of two level affiliate
-              program.
+              At <%= res.sitename %>, we believe that advertising about our
+              services by our satisfied clients is the best way to grow
+              business. Keeping this in mind, <%= res.sitename %> founded an
+              amazing lucrative reward in terms of two level affiliate program.
             </p>
             <br />
             <p class="section__text">
-              <%= res.locals.sitename %> is paying for the popularization of its
+              <%= res.sitename %> is paying for the popularization of its
               investment program and anyone can be rewarded. To benefit from
               this, you have to refer your friends, relatives and colleagues in
               your network through a referral link. You can earn on our
@@ -624,6 +692,92 @@
         </div>
       </div>
     </section>
+    <section class="section textsite titlesite bagblack padsection">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 section__title">
+            <h2 class="section__h2">How it works</h2>
+            <h3 class="section__h3">
+              At every step, the <%= res.sitename %> provides you with an
+              affordable and easy-to-use way even for beginners.
+            </h3>
+          </div>
+          <div class="col-md-12">
+            <div class="howitwork section__howitwork">
+              <div class="howitwork__tabs">
+                <ul class="nav nav-tabs howitwork__nav">
+                  <li class="active">
+                    <a data-toggle="tab" href="#howitwork1">Step 1</a>
+                  </li>
+                  <li><a data-toggle="tab" href="#howitwork2">Step 2</a></li>
+                  <li><a data-toggle="tab" href="#howitwork3">Step 3</a></li>
+                </ul>
+              </div>
+              <div class="tab-content howitwork__tabcontent">
+                <div id="howitwork1" class="tab-pane fade in active">
+                  <div class="step howitwork__step">
+                    <div class="step__icon">
+                      <img
+                        src="/assets/img/step-alt-1.png"
+                        alt="Create account"
+                      />
+                    </div>
+                    <div class="step__body">
+                      <h4 class="step__title">Create account</h4>
+                      <div class="step__content">
+                        Open a free account with <%= res.sitename %> by simply
+                        click on "Register". Complete the form and click submit.
+                        <br />Your account with <%= res.sitename %> will be
+                        active.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="howitwork2" class="tab-pane fade">
+                  <div class="step howitwork__step">
+                    <div class="step__icon">
+                      <img
+                        src="/assets/img/step-alt-2.png"
+                        alt="Create account"
+                      />
+                    </div>
+                    <div class="step__body">
+                      <h4 class="step__title">Make deposit</h4>
+                      <div class="step__content">
+                        Log in to your account by click on "User's area" button.
+                        After that, you can click on "Deposit" button in
+                        dashboard, select a payment system and amount of your
+                        deposit and pay, deposit will be create automatically.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="howitwork3" class="tab-pane fade">
+                  <div class="step howitwork__step">
+                    <div class="step__icon">
+                      <img
+                        src="/assets/img/step-alt-3.png"
+                        alt="Create account"
+                      />
+                    </div>
+                    <div class="step__body">
+                      <h4 class="step__title">Withdraw profit</h4>
+                      <div class="step__content">
+                        When you will receive your first accrual, you can
+                        withdraw it without problem. Just click the "Withdraw"
+                        button in dashboard, select the payment system, fill
+                        amount field and create withdrawal request.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section section-team">
       <div class="container">
         <div class="row">
@@ -667,11 +821,10 @@
                           UK Registered Company
                         </h4>
                         <p>
-                          <%= res.locals.sitename %> is a fully registered and
-                          licensed company in UK. <%= res.locals.sitename %> is
-                          powered by the latest and most secure form of SSL data
-                          encryption to keep all your data and information safe
-                          and secure.
+                          <%= res.sitename %> is a fully registered and licensed
+                          company in UK. <%= res.sitename %> is powered by the
+                          latest and most secure form of SSL data encryption to
+                          keep all your data and information safe and secure.
                         </p>
                       </div>
                       <div class="incrop-right-img">
@@ -727,7 +880,7 @@
               </div>
             </div>
             <div class="footer__copyright">
-              © 2021 <%= res.locals.sitename %>. ALL RIGHTS RESERVED.
+              © 2024 <%= res.sitename %>. ALL RIGHTS RESERVED.
             </div>
           </div>
         </div>

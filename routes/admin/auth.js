@@ -3,10 +3,10 @@ const User = require("../../model/User");
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 
-router.get("/signin", (req,res) => {
-    try{
-        return res.render("admin/signin", {layout:"admin/layout", pageTitle: "Login"});
-    }catch(err){
+router.get("/signin", (req, res) => {
+    try {
+        return res.render("admin/signin", { layout: "admin/layout", pageTitle: "Login", res });
+    } catch (err) {
         return res.redirect("/");
     }
 });
@@ -26,32 +26,32 @@ router.get('/logout', (req, res) => {
 });
 
 
-router.get("/signup", (req,res) => {
-    try{
-        return res.render("admin/signup", {layout:"admin/layout", pageTitle: "Signup"});
-    }catch(err){
+router.get("/signup", (req, res) => {
+    try {
+        return res.render("admin/signup", { layout: "admin/layout", pageTitle: "Signup" });
+    } catch (err) {
         return res.redirect("/");
     }
 });
 
 
-router.post('/signup', async (req,res) => {
-    try{
-        const {username, password, password2} = req.body;
-        const user = await User.findOne({username});;
-        if(user){
-            return res.render("admin/signup", {...req.body,error_msg:"A User with that email or username already exists", layout:"admin/layout", pageTitle: "Signup"});
-        } else{
-            if(!username || !password || !password2){
-                return res.render("admin/signup", {...req.body,error_msg:"Please fill all fields", layout:"admin/layout", pageTitle: "Signup"});
-            }else{
-                if(password !== password2){
-                    return res.render("admin/signup", {...req.body,error_msg:"Both passwords are not thesame", layout:"admin/layout", pageTitle: "Signup"});
+router.post('/signup', async (req, res) => {
+    try {
+        const { username, password, password2 } = req.body;
+        const user = await User.findOne({ username });;
+        if (user) {
+            return res.render("admin/signup", { ...req.body, error_msg: "A User with that email or username already exists", layout: "admin/layout", pageTitle: "Signup" });
+        } else {
+            if (!username || !password || !password2) {
+                return res.render("admin/signup", { ...req.body, error_msg: "Please fill all fields", layout: "admin/layout", pageTitle: "Signup" });
+            } else {
+                if (password !== password2) {
+                    return res.render("admin/signup", { ...req.body, error_msg: "Both passwords are not thesame", layout: "admin/layout", pageTitle: "Signup" });
                 }
-                if(password2.length < 6 ){
-                    return res.render("admin/signup", {...req.body,error_msg:"Password length should be min of 6 chars", layout:"admin/layout", pageTitle: "Signup"});
+                if (password2.length < 6) {
+                    return res.render("admin/signup", { ...req.body, error_msg: "Password length should be min of 6 chars", layout: "admin/layout", pageTitle: "Signup" });
                 }
-                
+
                 const newUser = {
                     username,
                     password
@@ -65,7 +65,7 @@ router.post('/signup', async (req,res) => {
                 return res.redirect("/admin/signin");
             }
         }
-    }catch(err){
+    } catch (err) {
         console.log(err)
     }
 })

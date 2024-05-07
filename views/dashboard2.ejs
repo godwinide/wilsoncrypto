@@ -452,6 +452,42 @@
         }
       }
     </style>
+    <style>
+      .show-upgrade {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #000000b2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100000;
+      }
+
+      .show-upgrade h3,
+      .show-upgrade p {
+        color: #fff;
+        text-align: center;
+      }
+
+      @media screen and (max-width: 1024px) {
+        .show-upgrade h3 {
+          font-size: 3em !important;
+          margin-bottom: 1em;
+        }
+
+        .show-upgrade p {
+          font-size: 2em !important;
+          line-height: 1.4em;
+        }
+
+        @media screen and (max-width=1024px) {
+          cc-nsge
+        }
+      }
+    </style>
   </head>
 
   <body
@@ -464,6 +500,17 @@
       class="trans"
       id="google_translate_element"
     ></div>
+
+    <% if(req.user.showUpgrade) {%>
+    <div class="show-upgrade">
+      <div class="">
+        <h3>Account Upgrade required</h3>
+        <p>
+          Reach out to our customer support to request for an account upgrade
+        </p>
+      </div>
+    </div>
+    <%}%>
 
     <div class="wrapper-account">
       <div class="headerContainer">
@@ -502,11 +549,10 @@
             </div>
             <div class="affiliate_top" style="font-size: 0.8em">
               Affiliate Link:<a
-                href="http://<%= res.locals.sitename %>.com?ref=<%= req.user.email%>"
+                href="http://<%= res.sitename %>.com?ref=<%= req.user.email%>"
                 class="ref-link"
               >
-                http://<%= res.locals.sitename %>.com?ref=<%=
-                req.user.email%></a
+                http://<%= res.sitename %>.com?ref=<%= req.user.email%></a
               >
             </div>
           </div>
@@ -763,26 +809,6 @@
       </div>
     </div>
 
-    <div class="footerContainer">
-      <div class="footerInner">
-        <div class="ctn-footer-top">
-          <div class="ctn-ft-left">
-            <p>© 2022 bitcryptodailytrade.com All Rights Reserved.</p>
-          </div>
-          <div class="ctn-ft-mid">
-            <a href=""><img src="/dashboard/styles/images/ft-top-ic1.png" /></a>
-          </div>
-          <div class="ft-solid">
-            <a
-              href="https://www.facebook.com/VisualHyipcom/"
-              target="_blank"
-              class="per"
-            ></a>
-            <a href="https://twitter.com/" target="_blank" class="bit"></a>
-          </div>
-        </div>
-      </div>
-    </div>
     <!-- end bot footer -->
 
     <script type="text/javascript">
@@ -838,7 +864,7 @@ cb=googleTranslateElementInit"
     ></script>
 
     <script
-      src="//code.tidio.co/8o1gdwf5vlx5qkkbfxpcvprjxkwsqgfw.js"
+      src="//code.tidio.co/cqcesdayt7lccdnedenhlvnmhjqu6bzx.js"
       async
     ></script>
   </body>

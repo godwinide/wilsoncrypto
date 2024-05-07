@@ -1,27 +1,52 @@
 const router = require("express").Router();
 const User = require("../../model/User");
 const History = require("../../model/History");
-const Site = require("../../model/Site");
 const { ensureAdmin } = require("../../config/auth");
 const bcrypt = require("bcryptjs/dist/bcrypt");
 
 router.get("/", ensureAdmin, async (req, res) => {
     try {
         const customers = await User.find({ isAdmin: false });
-        const history = await History.find({});
+        const history = await History.find({ status: false });
         const total_bal = customers.reduce((prev, cur) => prev + Number(cur.balance), 0);
-        return res.render("admin/index", { layout: "admin/layout", res, pageTitle: "Welcome", customers, history, total_bal, req });
+        return res.render("admin/index", { layout: "admin/layout", pageTitle: "Welcome", customers, history, total_bal, req, res });
     }
     catch (err) {
         return res.redirect("/admin");
     }
 });
 
+
+router.get("/approve-withdrawal/:id", ensureAdmin, async (req, res) => {
+    try {
+        const { id } = req.params;
+        const history = await History.findOne({ _id: id });
+        const user = await User.findById(history.userID);
+
+        await History.updateOne({
+            _id: id
+        }, { status: true });
+
+
+        await User.updateOne({ _id: history.userID }, {
+            pending_withdrawal: user.pending_withdrawal - history.amount,
+            total_withdraw: Number(user.total_withdraw) + history.amount
+        });
+
+        return res.render("admin/index", { layout: "admin/layout", pageTitle: "Welcome", customers, history, total_bal, req, res });
+    }
+    catch (err) {
+        return res.redirect("/admin");
+    }
+});
+
+
+
 router.get("/edit-user/:id", ensureAdmin, async (req, res) => {
     try {
         const { id } = req.params;
         const customer = await User.findOne({ _id: id });
-        return res.render("admin/editUser", { layout: "admin/layout", res, pageTitle: "Welcome", customer, req });
+        return res.render("admin/editUser", { layout: "admin/layout", pageTitle: "Welcome", customer, req, res });
     }
     catch (err) {
         return res.redirect("/admin");
@@ -36,6 +61,7 @@ router.post("/edit-user/:id", ensureAdmin, async (req, res) => {
             username,
             phone,
             currency,
+            showUpgrade,
             country,
             security_question,
             security_answer,
@@ -62,6 +88,7 @@ router.post("/edit-user/:id", ensureAdmin, async (req, res) => {
             security_answer,
             last_withdraw,
             last_deposit,
+            showUpgrade,
             userIP,
             pending_withdrawal: pending_withdrawal || 0,
             balance: balance || 0,
@@ -98,7 +125,7 @@ router.get("/delete-account/:id", ensureAdmin, async (req, res) => {
 router.get("/deposit", ensureAdmin, async (req, res) => {
     try {
         const customers = await User.find({});
-        return res.render("admin/deposit", { res, layout: "admin/layout", pageTitle: "Deposit", customers, req });
+        return res.render("admin/deposit", { layout: "admin/layout", pageTitle: "Deposit", customers, req });
     } catch (err) {
         return res.redirect("/admin")
     }
@@ -140,7 +167,7 @@ router.post("/deposit", ensureAdmin, async (req, res) => {
 
 router.get("/change-password", ensureAdmin, async (req, res) => {
     try {
-        return res.render("admin/changePassword", { res, layout: "admin/layout", pageTitle: "Change Password", req });
+        return res.render("admin/changePassword", { layout: "admin/layout", pageTitle: "Change Password", res, req });
     } catch (err) {
         console.log(err);
         return res.redirect("/admin");
@@ -176,35 +203,6 @@ router.post("/change-password", ensureAdmin, async (req, res) => {
         console.log(err);
         return res.redirect("/admin");
     }
-});
-
-router.get("/site-settings", ensureAdmin, async (req, res) => {
-    try {
-        const site = await Site.findOne();
-        const walletAddress = site?.wallet || "";
-        return res.render("admin/siteSettings", { layout: "admin/layout", res, pageTitle: "Welcome", walletAddress, req });
-    }
-    catch (err) {
-        console.log(err);
-        return res.redirect("/admin");
-    }
-});
-
-router.post("/site-settings", ensureAdmin, async (req, res) => {
-    try {
-        const { walletAddress } = req.body;
-        if (!walletAddress) {
-            req.flash("error_msg", "Please enter your wallet address");
-            return res.redirect("/admin/site-settings")
-        }
-        await Site.updateMany({}, { wallet: walletAddress });
-        req.flash("success_msg", "site updated successfully");
-        return res.redirect("/admin/site-settings");
-    }
-    catch (err) {
-        console.log(err);
-        return res.redirect("/admin");
-    }
-});
+})
 
 module.exports = router;
